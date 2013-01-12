@@ -107,5 +107,27 @@ If for elements that occur in a pattern, and you want to process, such as animat
             }
           }
 
+If you use the function callback, you will be considered in some cases it is necessary to disable the automatic display of the target element.
+However, and should be false to attribute the data-auto-show of its elements. :
 
+    <div id="abtest_target">
+      <div>
+        will not removing when any pattern
+      </div>
+      <div class="abtest" data-abtest="normal">
+        removing when not normal pattern
+      </div>
+      <div class="abtest" data-abtest="a" style="display:none">
+        inserting only when A pattern
+      </div>
+      <div id="b_slide_down" class="abtest" data-abtest="b" data-auto-show="false" style="display:none">
+        inserting only when B pattern
+      </div>
+      <div id="a_or_b" class="abtest" data-abtest="a, b" style="display:none">
+        inserting only when A or B pattern
+      </div>
+    </div>
+    <div id="unrelated_element" class="abtest" data-abtest="b">
+      unrelated_element
+    </div>
 
