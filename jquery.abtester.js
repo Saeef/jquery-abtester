@@ -28,22 +28,31 @@
       }else{
         currentPattern = config.period.outsidePattern;
       }
-      $('.abtest').each(function(){
+
+      $(document).ready(removeTestElements($(this), config, currentPattern));
+
+      if(config.patterns[currentPattern] && config.patterns[currentPattern].callback){
+        config.patterns[currentPattern].callback($(this));
+      }
+      return $(this);
+    };
+  function removeTestElements($self, config, currentPattern){
+    return function(){
+      $self.find('.abtest').each(function(){
         var targetPatterns = $(this).attr('data-abtest').split(',');
         var matched = false;
         for(var i=0; i < targetPatterns.length; i++){
           if(targetPatterns[i].replace(/^\s+|\s+$/g, '') === currentPattern){
             matched = true;
-            $(this).show();
+            if(config.patterns[currentPattern] && config.patterns[currentPattern].autoShow === true){
+              $(this).show();
+            }
           }
         }
         if(!matched){
           $(this).remove();
         }
       });
-      if(config.patterns[currentPattern]){
-        config.patterns[currentPattern].callback($(this));
-      }
-      return $(this);
     };
+  }
 })(jQuery);
