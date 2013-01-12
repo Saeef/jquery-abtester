@@ -14,6 +14,8 @@ Include script *after* the jQuery library and jquery.cookie.js(https://github.co
     
 ## Simple Usage
 
+Anyway, please try to operate using the test.html.
+
 For the elements under test, call the function abtester.
 Set the duration of the test and cookieName.
 Set the rate of appearance of each test pattern.
