@@ -7,30 +7,35 @@
       $(function(){
         $('#uho').abtester(
           {
-          cookieName: 'test',
-          cookieOption: {
-            path: '/'
-          },
-          patterns: {
-            a: {
-              probability: 10,
-              callback:  function($self){
-                //$self.html($('#uho_a').html());
-              }
+            cookieName: 'test',
+            cookieOption: {
+              path: '/'
             },
-            b: {
-              probability: 10,
-              callback:  function($self){
-                //$self.html($('#uho_b').html());
-              }
-            },
-            c: {
-              probability: 10,
-              callback:  function($self){
-                //$self.html("c");
+            period: {
+              start: new Date(2013, 0, 12, 21, 0, 0),
+              end: new Date(2013, 0, 13, 21, 0, 0),
+              outsidePattern: 'normal'
+            }, 
+            patterns: {
+              normal: {
+                probability: 10,
+                callback:  function($self){
+                  //$self.html($('#uho_a').html());
+                }
+              },
+              a: {
+                probability: 10,
+                callback:  function($self){
+                  //$self.html($('#uho_b').html());
+                }
+              },
+              b: {
+                probability: 10,
+                callback:  function($self){
+                  //$self.html("c");
+                }
               }
             }
-          }
           }
         );
       });
@@ -39,15 +44,20 @@
   </head>
   <body>
     <div id="uho">
-      hello world
+      <div>
+        will not removing when any pattern
+      </div>
+      <div class="abtest" data-abtest="normal">
+        removing when not normal pattern
+      </div>
       <div class="abtest" data-abtest="a" style="display:none">
-        aパターンでしか出ない文字列
+        inserting only when A pattern
       </div>
       <div class="abtest" data-abtest="b" style="display:none">
-        bパターンでしか出ない文字列
+        inserting only when B pattern
       </div>
       <div class="abtest" data-abtest=" a, b " style="display:none">
-        a,bパターンでしか出ない文字列
+        inserting only when A or B pattern
       </div>
     </div>
     <div id="uho_a" style="display:none;">aパターン</div>
