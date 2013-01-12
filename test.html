@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="jquery.cookie.js"></script>
+    <script src="jquery.abtester.js"></script>
+    <script>
+      $(function(){
+        $('#uho').abtester(
+          {
+          cookieName: 'test',
+          cookieOption: {
+            path: '/'
+          },
+          patterns: {
+            a: {
+              probability: 10,
+              callback:  function($self){
+                //$self.html($('#uho_a').html());
+              }
+            },
+            b: {
+              probability: 10,
+              callback:  function($self){
+                //$self.html($('#uho_b').html());
+              }
+            },
+            c: {
+              probability: 10,
+              callback:  function($self){
+                //$self.html("c");
+              }
+            }
+          }
+          }
+        );
+      });
+
+    </script>
+  </head>
+  <body>
+    <div id="uho">
+      hello world
+      <div class="abtest" data-abtest="a" style="display:none">
+        aパターンでしか出ない文字列
+      </div>
+      <div class="abtest" data-abtest="b" style="display:none">
+        bパターンでしか出ない文字列
+      </div>
+      <div class="abtest" data-abtest=" a, b " style="display:none">
+        a,bパターンでしか出ない文字列
+      </div>
+    </div>
+    <div id="uho_a" style="display:none;">aパターン</div>
+    <div id="uho_b" style="display:none;">bパターン</div>
+  </body>
+</html>
