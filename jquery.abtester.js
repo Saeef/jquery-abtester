@@ -44,7 +44,7 @@
         for(var i=0; i < targetPatterns.length; i++){
           if(targetPatterns[i].replace(/^\s+|\s+$/g, '') === currentPattern){
             matched = true;
-            if(config.patterns[currentPattern] && config.patterns[currentPattern].autoShow === true){
+            if(config.patterns[currentPattern] && $(this).attr('data-auto-show') !== 'false'){
               $(this).show();
             }
           }
